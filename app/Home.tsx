@@ -1,15 +1,7 @@
 "use client";
-import axios from "axios";
-// import Dstructuring from "./destructuring/page";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
-
-type TodoType = {
-  id: string;
-  todo: string;
-  done: boolean;
-  size?: number;
-};
+import { TodoType } from "./page";
 
 export default function Home(text: string) {
   const [input, setInput] = useState<string>("");
@@ -20,14 +12,13 @@ export default function Home(text: string) {
   });
 
   // const [deleteId, setDeleteId] = useState<number | null>(null);
-
   const addButtonHandle = () => {
     const addTodo = [
       ...todos,
       { id: String(new Date()), todo: input, done: false },
     ];
     window.localStorage.setItem("myTodos", JSON.stringify(addTodo));
-    setTodos(addTodo);
+    setTodos([...todos, { id: todos.length + 1, todo: input, done: false }]);
     setInput("");
   };
 
@@ -51,8 +42,8 @@ export default function Home(text: string) {
   return (
     <div className="flex flex-col items-center">
       {/* <div className="m-8 mt-32">
-        <Dstructuring array={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10000000]} />
-      </div> */}
+              <Dstructuring array={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10000000]} />
+            </div> */}
       <div className="title text-[5rem] font-extrabold mt-32">Todo</div>
       <div className="border-red-500">
         <input
@@ -64,13 +55,13 @@ export default function Home(text: string) {
         />
 
         {/* <button
-          className="border bg-white text-black m-2 p-2 rounded-lg"
-          onClick={() => {
-            setInput("");
-          }}
-        >
-          클리어
-        </button> */}
+              className="border bg-white text-black m-2 p-2 rounded-lg"
+              onClick={() => {
+                setInput("");
+              }}
+            >
+              클리어
+            </button> */}
       </div>
 
       <button
@@ -85,7 +76,7 @@ export default function Home(text: string) {
             <div key={index} className="relative">
               <div
                 onClick={(e) => doneHandle(e, item.id)}
-                className={`border w-[25rem] m-4 p-2 cursor-pointer  ${
+                className={`border w-[25rem] m-4 p-2 cursor-pointer ${
                   item.size && "text-[1rem]"
                 } ${!item.done && "text-red-400"}`}
               >
@@ -101,13 +92,4 @@ export default function Home(text: string) {
       </div>
     </div>
   );
-}
-
-const todos: string[] = ["동해물과", "백두산이"];
-
-const ex = { todos: ["동해물과", "백두산이"] };
-
-function addText(글자: string) {
-  console.log("클릭");
-  todos.push(글자);
 }
