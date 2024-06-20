@@ -25,15 +25,18 @@ export default function Home() {
   // const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const addButtonHandle = () => {
-    const addTodo = [
-      ...todos,
-      { id: String(new Date()), todo: input, done: false },
-    ];
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("myTodos", JSON.stringify(addTodo));
+    console.log(input.replace(/\s/g, "").length);
+    if (input.replace(/\s/g, "") !== "") {
+      const addTodo = [
+        ...todos,
+        { id: String(new Date()), todo: input, done: false },
+      ];
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("myTodos", JSON.stringify(addTodo));
+      }
+      setTodos(addTodo);
+      setInput("");
     }
-    setTodos(addTodo);
-    setInput("");
   };
 
   const deleteHandle = (e: any, param: string) => {
@@ -96,7 +99,7 @@ export default function Home() {
                 onClick={(e) => doneHandle(e, item.id)}
                 className={`border w-[25rem] m-4 p-2 cursor-pointer  ${
                   item.size && "text-[1rem]"
-                } ${!item.done && "text-red-400"}`}
+                } ${item.done && "line-through opacity-50"}`}
               >
                 {item.todo}
               </div>
