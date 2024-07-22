@@ -2,6 +2,9 @@
 // import Dstructuring from "./destructuring/page";
 import { useEffect, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
+import { IoLogOutOutline } from "react-icons/io5";
+import { TbLogin } from "react-icons/tb";
+import { BsCalendar2Date } from "react-icons/bs";
 
 type TodoType = {
   id: string;
@@ -61,21 +64,24 @@ export default function Home() {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex ">
       {/* <div className="m-8 mt-32">
         <Dstructuring array={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10000000]} />
       </div> */}
-      <div className="title text-[5rem] font-extrabold mt-32">Todo</div>
-      <div className="border-red-500">
-        <input
-          type="text"
-          value={input}
-          placeholder="여기에 입력하세요"
-          className="text-black text-3xl p-2 max-w-[20rem]"
-          onChange={(e) => setInput(e.target.value)}
-        />
+      <div className=" items-start  ">
+        <div className="title text-[5rem] font-extrabold mt-20 m-6 mx-24  borderw">
+          Todo
+        </div>
+        <div className="border-red-500">
+          <input
+            type="text"
+            value={input}
+            placeholder="여기에 입력하세요"
+            className="text-black text-3xl p-2 max-w-[20rem] mx-10 me-[1050px]"
+            onChange={(e) => setInput(e.target.value)}
+          />
 
-        {/* <button
+          {/* <button
           className="border bg-white text-black m-2 p-2 rounded-lg"
           onClick={() => {
             setInput("");
@@ -83,33 +89,34 @@ export default function Home() {
         >
           클리어
         </button> */}
-      </div>
+        </div>
 
-      <button
-        className="border bg-white text-black m-2 p-2 rounded-lg"
-        onClick={addButtonHandle}
-      >
-        할일 추가
-      </button>
-      <div className="text-[2rem]">
-        {todos?.map((item, index) => {
-          return (
-            <div key={index} className="relative">
-              <div
-                onClick={(e) => doneHandle(e, item.id)}
-                className={`border w-[25rem] m-4 p-2 cursor-pointer  ${
-                  item.size && "text-[1rem]"
-                } ${item.done && "line-through opacity-50"}`}
-              >
-                {item.todo}
+        <button
+          className="border bg-white text-black m-2 p-2 rounded-lg max-w-[16rem] mx-[95px]  min-w-[13rem] "
+          onClick={addButtonHandle}
+        >
+          할일 추가
+        </button>
+        <div className="text-[2rem] items-center">
+          {todos?.map((item, index) => {
+            return (
+              <div key={index} className="relative">
+                <div
+                  onClick={(e) => doneHandle(e, item.id)}
+                  className={`border w-[40rem] m-4 p-5 cursor-pointer mb-4 rounded-3xl relat${
+                    item.size && ""
+                  } ${item.done && "line-through opacity-50"}`}
+                >
+                  {item.todo}
+                </div>
+                <FaDeleteLeft
+                  onClick={(e) => deleteHandle(e, item.id)}
+                  className="absolute right-auto left-[600px] top-4"
+                />
               </div>
-              <FaDeleteLeft
-                onClick={(e) => deleteHandle(e, item.id)}
-                className="absolute right-8 top-4"
-              />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

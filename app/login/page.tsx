@@ -18,14 +18,14 @@ export default function Login() {
         password,
       });
       localStorage.setItem("token", response.data.token);
-      router.push("/todo");
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className="text-gray-800 bg-white text-center pb-96 ">
+    <div className="text-gray-800 bg-white text-center pb-96 h-full">
       <h1 className="text-[100px] pb-5">Login</h1>
       <form onSubmit={handleSubmit} className="pb-10">
         <input

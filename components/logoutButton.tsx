@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Button from "@/components/button";
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -18,11 +19,15 @@ export default function LogoutButton() {
         }
       );
       localStorage.removeItem("token");
-      router.push("/login");
+      window.location.reload();
     } catch (error) {
       console.error("Error logging out", error);
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <div onClick={handleLogout}>
+      <Button name="Log out" />
+    </div>
+  );
 }
