@@ -1,8 +1,10 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import HeaderTitle from "./headerTitle";
 import { MdDoNotDisturb } from "react-icons/md";
 import Button from "./button";
 import LogoutButton from "./logoutButton";
+import DropDown from "./dropDown";
 
 interface Props {
   username: string | undefined;
@@ -11,30 +13,37 @@ interface Props {
 
 const Header: React.FC<Props> = ({ username, photoUrl }) => {
   console.log({ photoUrl });
+  const [isMenuShow, setIsMenuShow] = useState(true);
 
   return (
-    <div className="border-b">
-      <div className="mx-[20px]  flex justify-between items-center  h-[80px]">
+    <div className="border-b ">
+      <div className=" mx-[100px] flex justify-between items-center h-[80px]">
         <HeaderTitle userName={username} />
-        {username ? (
-          <div className="flex items-center">
-            <LogoutButton />
-            <div
-              style={{
-                width: "50px",
-                height: "50px",
-                backgroundImage: `url(${photoUrl})`,
-                backgroundSize: "cover",
-              }}
-              className=""
-            ></div>
+        <div className="relative ">
+          <div
+            onClick={() => {
+              setIsMenuShow(!isMenuShow);
+            }}
+            className="rounded-full"
+            style={{
+              width: "70px",
+              height: "70px",
+              backgroundImage: `url(${photoUrl})`,
+              backgroundSize: "cover",
+            }}
+          ></div>
+          <div
+            className={`${!isMenuShow && "hidden"} absolute right-0 top-[75px]`}
+          >
+            <DropDown />
           </div>
-        ) : (
+        </div>
+        {/* ) : (
           <div className="flex">
             <Button key={1} name="Sign in" />
             <Button key={2} name="Sign up" />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

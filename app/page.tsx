@@ -44,6 +44,7 @@ export default function Home() {
       {userData && (
         <Header username={userData?.name} photoUrl={userData?.photoUrl} />
       )}
+      <Todo />
     </div>
   );
 }
