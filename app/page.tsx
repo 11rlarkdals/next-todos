@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-type UserType = {
+export type UserType = {
   id: number;
   name: string;
   email: string;
