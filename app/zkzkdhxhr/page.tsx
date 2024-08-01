@@ -5,6 +5,7 @@ import Image from "next/image";
 import { MdOutlineQrCode } from "react-icons/md";
 import { BsExclamationCircle } from "react-icons/bs";
 import Link from "next/link";
+import TalkIcon from "@/public/talkIcon";
 
 interface Props {}
 
@@ -13,16 +14,8 @@ const kkot: React.FC<Props> = ({}) => {
     <div className=" mx-auto flex">
       <Image src={kakaotalkLogin} alt={"picture"}></Image>
       <div className="bg-[#ffdc00] w-[390px] rounded-xl">
-        <div className="mt-[70px]">
-          <div
-            className="rounded-full mx-auto"
-            style={{
-              width: "126px",
-              height: "120px",
-              backgroundImage: "url(https://i.imgur.com/6QfanVx.png)",
-              backgroundSize: "cover",
-            }}
-          ></div>
+        <div className="mt-[70px] flex items-center flex-col">
+          <TalkIcon size={110} />
         </div>
         <div className="w-[240px] mx-auto mt-[34px] text-gray-400 ">
           <div>
@@ -32,9 +25,12 @@ const kkot: React.FC<Props> = ({}) => {
             <div className="border p-[10px] text-[15px] bg-slate-50">
               비밀번호
             </div>
-            <div className="border p-[8px] text-center mt-[10px] bg-slate-50 text-[15px]">
+            <Link
+              className="border bg-slate-50 text-[15px] block mt-[10px] p-[8px] text-center"
+              href={"/test"}
+            >
               로그인
-            </div>
+            </Link>
           </div>
           <div className=" flex items-center  mx-auto mt-[20px]">
             <div className="border-b h-[1px] w-full border-gray-300"></div>
@@ -53,9 +49,9 @@ const kkot: React.FC<Props> = ({}) => {
             <BsExclamationCircle className="text-gray-200" />
           </div>
           <div className="flex mt-[110px] justify-center text-[12px] text-gray-500">
-            <div>카카오계정 찾기</div>
+            <Link href={"/kkot"}>카카오계정 찾기</Link>
             <div className="mx-[5px] text-gray-300">|</div>
-            <div>비밀번호 재설정</div>
+            <Link href={"/kkotPassword"}>비밀번호 재설정</Link>
           </div>
         </div>
       </div>

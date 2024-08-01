@@ -5,9 +5,9 @@ interface Props {}
 
 const test: React.FC<Props> = ({}) => {
   return (
-    <div>
+    <div className="items-center">
       <div className="flex h-[750px]">
-        <div className="bg-gray-300 w-[70px] ">
+        <div className="bg-gray-200 w-[70px] text-gray-950">
           <div className="mx-[10px] my-10">
             <div className="my-10">icon</div>
             <div className="my-10">icon</div>
@@ -17,8 +17,8 @@ const test: React.FC<Props> = ({}) => {
             <div className="my-10">icon</div>
           </div>
         </div>
-        <div className="bg-gray-100 w-[400px] text-gray-950">
-          <div></div>
+        <div className="bg-white w-[400px] text-gray-950">
+          <div>친구</div>
           <div></div>
           <div></div>
         </div>
